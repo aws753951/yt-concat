@@ -8,7 +8,7 @@ from yt_concat.setting import DOWNLOAD_DIR, VIDEOS_DIR, CAPTIONS_DIR, api_key
 
 class GetVideoList(Step):
 
-    def process(self, inputs):
+    def process(self, inputs, data):
 
         filepath = os.path.join(DOWNLOAD_DIR, inputs['channel_id'] + '.txt')
 
