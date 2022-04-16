@@ -1,7 +1,4 @@
-import os
 
-
-from yt_concat.setting import DOWNLOAD_DIR, VIDEOS_DIR, CAPTIONS_DIR, api_key
 from yt_concat.pipeline.pipeline import Pipeline
 from yt_concat.pipeline.steps.getvideolist import GetVideoList
 
@@ -33,8 +30,6 @@ if __name__ == '__main__':
 #
 # temp =
 #
-# with open(temp, 'w', encoding='utf-8') as f:
-#     for url in video_links:
-#         f.write(url + '\n')
+
 #
 # get_all_video_in_channel()
