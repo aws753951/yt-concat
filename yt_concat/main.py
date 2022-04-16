@@ -1,6 +1,7 @@
 
 from yt_concat.pipeline.pipeline import Pipeline
 from yt_concat.pipeline.steps.getvideolist import GetVideoList
+from yt_concat.pipeline.steps.building import Building
 
 
 
@@ -10,6 +11,7 @@ def main():
     }
 
     steps = [
+        Building(),
         GetVideoList(),
     ]
 
@@ -28,7 +30,6 @@ if __name__ == '__main__':
 
 # os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 #
-# temp =
 #
 
 #

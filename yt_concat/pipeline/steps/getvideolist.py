@@ -3,7 +3,7 @@ import json
 import os
 
 from .step import Step
-from yt_concat.setting import DOWNLOAD_DIR, VIDEOS_DIR, CAPTIONS_DIR, api_key
+from yt_concat.setting import DOWNLOAD_DIR, api_key
 
 
 class GetVideoList(Step):
