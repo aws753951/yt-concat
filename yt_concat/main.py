@@ -3,7 +3,7 @@ from yt_concat.pipeline.pipeline import Pipeline
 from yt_concat.pipeline.steps.getvideolist import GetVideoList
 from yt_concat.pipeline.steps.building import Building
 from yt_concat.pipeline.steps.downloadcaption import DownloadCaption
-
+from yt_concat.utils import Utils
 
 
 def main():
@@ -17,8 +17,9 @@ def main():
         DownloadCaption(),
     ]
 
+    utils = Utils()
     p = Pipeline(steps)
-    p.run(inputs)
+    p.run(inputs, utils)
 
 
 

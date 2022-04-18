@@ -1,21 +1,18 @@
-import os
 from pytube import YouTube
 
 from .step import Step
-from yt_concat.setting import CAPTIONS_DIR
+
 
 
 class DownloadCaption(Step):
 
-    def process(self, inputs, data):
+    def process(self, inputs, data, utils):
 
         for url in data:
             print(url)
-            id = url.split('watch?v=')[-1]
-            filepath = os.path.join(CAPTIONS_DIR, id + '.txt')
 
-            if os.path.exists(filepath) and os.path.getsize(filepath) > 0:
-                print('found- ' + id + ' -captions')
+            if utils.get_captions_exist(url):
+                print('found- ' + utils.get_id(url) + ' -captions')
                 continue
 
             try:
@@ -27,7 +24,7 @@ class DownloadCaption(Step):
             except AttributeError:
                 continue
 
-            with open(filepath, "w", encoding='utf-8') as f:
+            with open(utils.get_captions_path(url), "w", encoding='utf-8') as f:
                 f.write(en_caption_convert_to_srt)
 
         print(data)

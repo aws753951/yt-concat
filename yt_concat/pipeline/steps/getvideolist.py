@@ -1,6 +1,5 @@
 import urllib.request
 import json
-import os
 
 from .step import Step
 from yt_concat.setting import DOWNLOAD_DIR, api_key
@@ -8,13 +7,11 @@ from yt_concat.setting import DOWNLOAD_DIR, api_key
 
 class GetVideoList(Step):
 
-    def process(self, inputs, data):
+    def process(self, inputs, data, utils):
 
-        filepath = os.path.join(DOWNLOAD_DIR, inputs['channel_id'] + '.txt')
-
-        if os.path.exists(filepath) and os.path.getsize(filepath) > 0:
+        if utils.get_videos_exist(inputs):
             print('video list file exists')
-            return self.read_file(filepath)
+            return self.read_file(utils.get_videos_path(inputs))
 
         base_video_url = 'https://www.youtube.com/watch?v='
         base_search_url = 'https://www.googleapis.com/youtube/v3/search?'
@@ -38,7 +35,7 @@ class GetVideoList(Step):
             except KeyError:  # the outcome of trying
                 break
 
-        self.write_file(video_links, filepath)
+        self.write_file(video_links, utils.get_videos_path(inputs))
         return video_links
 
     def write_file(self, video_links, filepath):
