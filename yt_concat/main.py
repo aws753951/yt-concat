@@ -4,6 +4,8 @@ from yt_concat.pipeline.steps.getvideolist import GetVideoList
 from yt_concat.pipeline.steps.building import Building
 from yt_concat.pipeline.steps.downloadcaption import DownloadCaption
 from yt_concat.utils import Utils
+from yt_concat.pipeline.steps.initializeyt import InitializeYT
+from yt_concat.pipeline.steps.readcaption import ReadCaption
 
 
 def main():
@@ -14,7 +16,9 @@ def main():
     steps = [
         Building(),
         GetVideoList(),
+        InitializeYT(),
         DownloadCaption(),
+        ReadCaption()
     ]
 
     utils = Utils()

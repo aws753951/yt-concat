@@ -8,8 +8,8 @@ class DownloadCaption(Step):
 
     def process(self, inputs, data, utils):
 
-        for url in data:
-            print(url)
+        for YT in data:
+            url = YT.url
 
             if utils.get_captions_exist(url):
                 print('found- ' + utils.get_id(url) + ' -captions')
@@ -27,5 +27,4 @@ class DownloadCaption(Step):
             with open(utils.get_captions_path(url), "w", encoding='utf-8') as f:
                 f.write(en_caption_convert_to_srt)
 
-        print(data)
         return data

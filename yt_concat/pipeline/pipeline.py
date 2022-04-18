@@ -4,6 +4,6 @@ class Pipeline():
         self.steps = steps
 
     def run(self, inputs, utils):
-        data =None
+        data = None
         for step in self.steps:
             data = step.process(inputs, data, utils)
