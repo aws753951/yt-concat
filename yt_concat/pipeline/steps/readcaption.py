@@ -12,12 +12,17 @@ class ReadCaption(Step):
             with open(utils.get_captions_path(url), 'r', encoding='utf-8') as f:
                 time = None
                 caption = None
+                time_check = False
                 for line in f:
                     if '-->' in line:
                         time = line.strip()
+                        time_check = True
                         continue
-                    caption = line.strip()
-                    captions[caption] = time
+                    if time_check:
+                        caption = line.strip()
+                        captions[caption] = time
+                        time_check = False
+
             YT.captions = captions
 
         return data

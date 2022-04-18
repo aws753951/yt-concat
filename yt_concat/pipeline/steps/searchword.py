@@ -11,11 +11,8 @@ class SeachWord(Step):
                 continue
             for caption in YT.captions:
                 if inputs['word'] in caption:
-                    print('found specific word')
                     time = YT.captions[caption]
                     t = Found(YT, caption, time)
-                    print(t.get_caption())
                     found.append(t)
 
-        print(found)
         return found
