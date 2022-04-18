@@ -19,7 +19,6 @@ class ReadCaption(Step):
                     caption = line.strip()
                     captions[caption] = time
             YT.captions = captions
-            print(YT.captions)
 
         return data
 
