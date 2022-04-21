@@ -36,6 +36,8 @@ class GetVideoList(Step):
                 break
 
         self.write_file(video_links, utils.get_videos_path(inputs))
+        print('video list has been written down')
+
         return video_links
 
     def write_file(self, video_links, filepath):

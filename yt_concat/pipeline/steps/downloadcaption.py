@@ -15,6 +15,7 @@ class DownloadCaption(Step):
                 print('found- ' + utils.get_id(url) + ' -captions')
                 continue
 
+            print('writing captions ' + url + ' here')
             try:
                 source = YouTube(url)
 
@@ -26,5 +27,7 @@ class DownloadCaption(Step):
 
             with open(utils.get_captions_path(url), "w", encoding='utf-8') as f:
                 f.write(en_caption_convert_to_srt)
+
+            print('caption files has been written down')
 
         return data

@@ -7,11 +7,13 @@ from yt_concat.utils import Utils
 from yt_concat.pipeline.steps.initializeyt import InitializeYT
 from yt_concat.pipeline.steps.readcaption import ReadCaption
 from yt_concat.pipeline.steps.searchword import SeachWord
+from yt_concat.pipeline.steps.download_video import DownloadVideo
+from yt_concat.pipeline.steps.edit_video import EditVideo
 
 def main():
     inputs = {
-        'channel_id': 'UCIEv3lZ_tNXHzL3ox-_uUGQ',
-        'word': 'delicious',
+        'channel_id': 'UCxXbnxNte0RkAbAVceWgwNA',
+        'word': 'kill',
     }
 
     steps = [
@@ -21,6 +23,8 @@ def main():
         DownloadCaption(),
         ReadCaption(),
         SeachWord(),
+        DownloadVideo(),
+        EditVideo()
     ]
 
     utils = Utils()

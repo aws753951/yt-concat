@@ -8,11 +8,11 @@ class SeachWord(Step):
         for YT in data:
             url = YT.url
             if not utils.get_captions_exist(url):
+                print('this ' + url + 'has no captions, must check it')
                 continue
             for caption in YT.captions:
                 if inputs['word'] in caption:
                     time = YT.captions[caption]
-                    t = Found(YT, caption, time)
-                    found.append(t)
+                    found.append(Found(YT, caption, time))
 
         return found

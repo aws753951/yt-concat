@@ -24,6 +24,7 @@ class ReadCaption(Step):
                         time_check = False
 
             YT.captions = captions
+        print('yt class save dict of captions')
 
         return data
 
