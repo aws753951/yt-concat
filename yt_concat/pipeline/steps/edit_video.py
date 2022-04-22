@@ -7,6 +7,7 @@ class EditVideo(Step):
     def process(self, inputs, data, utils):
         clips = []
         count = 0
+        limit = inputs['limit']
         for found in data:
             url = found.YT.url
             if not utils.download_video_exist(url):
@@ -16,7 +17,7 @@ class EditVideo(Step):
             print('clip video --- ' + found.caption + '///' + found.time)
             video = VideoFileClip(utils.download_video_path(url)).subclip(t_start=start, t_end=end)
             clips.append(video)
-            if count > 10:
+            if count > limit:
                 break
 
         final_clip = concatenate_videoclips(clips)

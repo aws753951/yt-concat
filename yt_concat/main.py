@@ -1,3 +1,5 @@
+import sys
+sys.path.append('../')
 
 from yt_concat.pipeline.pipeline import Pipeline
 from yt_concat.pipeline.steps.getvideolist import GetVideoList
@@ -14,6 +16,7 @@ def main():
     inputs = {
         'channel_id': 'UCxXbnxNte0RkAbAVceWgwNA',
         'word': 'kill',
+        'limit': 10,
     }
 
     steps = [
