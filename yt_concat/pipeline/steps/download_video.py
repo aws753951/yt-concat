@@ -9,7 +9,6 @@ class DownloadVideo(Step):
     def process(self, inputs, data, utils):
 
         yt_set = set([found.YT for found in data])
-
         for YT in yt_set:
             url = YT.url
             if utils.download_video_exist(url):

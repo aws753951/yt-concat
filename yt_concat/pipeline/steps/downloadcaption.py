@@ -7,7 +7,6 @@ from .step import Step
 class DownloadCaption(Step):
 
     def process(self, inputs, data, utils):
-
         for YT in data:
             url = YT.url
 
@@ -15,7 +14,6 @@ class DownloadCaption(Step):
                 print('found- ' + utils.get_id(url) + ' -captions')
                 continue
 
-            print('writing captions ' + url + ' here')
             try:
                 source = YouTube(url)
 
@@ -23,11 +21,12 @@ class DownloadCaption(Step):
 
                 en_caption_convert_to_srt = (en_caption.generate_srt_captions())
             except AttributeError:
+                print(url + ' has no captions')
                 continue
-
             with open(utils.get_captions_path(url), "w", encoding='utf-8') as f:
                 f.write(en_caption_convert_to_srt)
+            print('writing captions ' + url + ' here')
 
-            print('caption files has been written down')
+        print('caption files has been written down')
 
         return data

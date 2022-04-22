@@ -23,6 +23,9 @@ class EditVideo(Step):
         final_clip = concatenate_videoclips(clips)
         final_clip.write_videofile(utils.download_out_path(inputs))
 
+        for video in clips:
+            video.close()
+
     def parse_caption_time(self, found_time):
         start, end = found_time.split('-->')
         return self.parse_time_str(start), self.parse_time_str(end)
