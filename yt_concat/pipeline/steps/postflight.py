@@ -10,4 +10,4 @@ class Postflight(Step):
         if inputs['cleanup'] == True:
             shutil.rmtree(VIDEOS_DIR)
             shutil.rmtree(CAPTIONS_DIR)
-            logging.getLogger('yt').info('delete videos and captions')
+            logging.getLogger('yt_concat.yt_log').info('delete videos and captions')

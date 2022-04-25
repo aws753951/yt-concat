@@ -25,7 +25,7 @@ class ReadCaption(Step):
                         time_check = False
 
             YT.captions = captions
-        logging.getLogger('yt').info('yt class save dict of captions')
+        logging.getLogger('yt_concat.yt_log').info('yt class save dict of captions')
 
         return data
 

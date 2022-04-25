@@ -11,7 +11,7 @@ class GetVideoList(Step):
     def process(self, inputs, data, utils):
 
         if utils.get_videos_exist(inputs):
-            logging.getLogger('yt').info('video list file exists')
+            logging.getLogger('yt_concat.yt_log').info('video list file exists')
             return self.read_file(utils.get_videos_path(inputs))
 
         base_video_url = 'https://www.youtube.com/watch?v='
@@ -37,7 +37,7 @@ class GetVideoList(Step):
                 break
 
         self.write_file(video_links, utils.get_videos_path(inputs))
-        logging.getLogger('yt').info('video list has been written down')
+        logging.getLogger('yt_concat.yt_log').info('video list has been written down')
 
         return video_links
 

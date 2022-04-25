@@ -12,7 +12,7 @@ class DownloadCaption(Step):
             url = YT.url
 
             if utils.get_captions_exist(url):
-                logging.getLogger('yt').debug('found- ' + utils.get_id(url) + ' -captions')
+                logging.getLogger('yt_concat.yt_log').debug('found- ' + utils.get_id(url) + ' -captions')
                 continue
 
             try:
@@ -22,12 +22,12 @@ class DownloadCaption(Step):
 
                 en_caption_convert_to_srt = (en_caption.generate_srt_captions())
             except AttributeError:
-                logging.getLogger('yt').debug(url + ' has no captions')
+                logging.getLogger('yt_concat.yt_log').debug(url + ' has no captions')
                 continue
             with open(utils.get_captions_path(url), "w", encoding='utf-8') as f:
                 f.write(en_caption_convert_to_srt)
-            logging.getLogger('yt').debug('writing captions ' + url + ' here')
+            logging.getLogger('yt_concat.yt_log').debug('writing captions ' + url + ' here')
 
-        logging.getLogger('yt').info('caption files has been written down')
+        logging.getLogger('yt_concat.yt_log').info('caption files has been written down')
 
         return data

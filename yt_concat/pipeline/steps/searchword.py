@@ -10,13 +10,13 @@ class SeachWord(Step):
         for YT in data:
             url = YT.url
             if not utils.get_captions_exist(url):
-                logging.getLogger('yt').debug('this ' + url + 'has no captions, must check it')
+                logging.getLogger('yt_concat.yt_log').debug('this ' + url + 'has no captions, must check it')
                 continue
             for caption in YT.captions:
                 if inputs['word'] in caption:
                     time = YT.captions[caption]
                     found.append(Found(YT, caption, time))
 
-        logging.getLogger('yt').info('searching process has completed')
+        logging.getLogger('yt_concat.yt_log').info('searching process has completed')
 
         return found

@@ -14,6 +14,6 @@ class Building(Step):
         os.makedirs(CAPTIONS_DIR, exist_ok=True)
         os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-        logging.getLogger('yt').info('building dir ok')
+        logging.getLogger('yt_concat.yt_log').info('building dir ok')
 
 

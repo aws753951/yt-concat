@@ -16,7 +16,8 @@ from yt_concat.pipeline.steps.searchword import SeachWord
 from yt_concat.pipeline.steps.download_video import DownloadVideo
 from yt_concat.pipeline.steps.edit_video import EditVideo
 from yt_concat.pipeline.steps.postflight import Postflight
-from yt_concat.logger import logger_yt
+from yt_concat.yt_log import yt_log
+
 
 
 
@@ -26,7 +27,7 @@ def main():
         'word': 'comparison',
         'limit': 5,
         'cleanup': True,
-        'stream_logger': logging.INFO
+        'stream_logger': logging.INFO,
     }
 
 
@@ -78,7 +79,7 @@ def main():
     ]
 
     utils = Utils()
-    logger_yt(inputs['stream_logger'])
+    yt_log(inputs['stream_logger'])
     p = Pipeline(steps)
     p.run(inputs, utils)
 
