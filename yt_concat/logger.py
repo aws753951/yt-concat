@@ -1,6 +1,6 @@
 import logging
 
-def logger_yt():
+def logger_yt(level):
 
     logger = logging.getLogger('yt')
     logger.setLevel(logging.DEBUG)
@@ -10,7 +10,7 @@ def logger_yt():
     file_handler.setFormatter(formatter)
 
     stream_handler = logging.StreamHandler()
-    stream_handler.setLevel(logging.INFO)
+    stream_handler.setLevel(level)
     stream_handler.setFormatter(formatter)
 
     logger.addHandler(file_handler)
