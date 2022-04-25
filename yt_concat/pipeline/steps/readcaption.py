@@ -1,4 +1,5 @@
 from .step import Step
+import logging
 
 class ReadCaption(Step):
 
@@ -24,7 +25,7 @@ class ReadCaption(Step):
                         time_check = False
 
             YT.captions = captions
-        print('yt class save dict of captions')
+        logging.getLogger('yt').info('yt class save dict of captions')
 
         return data
 

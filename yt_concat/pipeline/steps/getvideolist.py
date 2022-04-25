@@ -1,5 +1,6 @@
 import urllib.request
 import json
+import logging
 
 from .step import Step
 from yt_concat.setting import DOWNLOAD_DIR, api_key
@@ -10,7 +11,7 @@ class GetVideoList(Step):
     def process(self, inputs, data, utils):
 
         if utils.get_videos_exist(inputs):
-            print('video list file exists')
+            logging.getLogger('yt').info('video list file exists')
             return self.read_file(utils.get_videos_path(inputs))
 
         base_video_url = 'https://www.youtube.com/watch?v='
@@ -36,7 +37,7 @@ class GetVideoList(Step):
                 break
 
         self.write_file(video_links, utils.get_videos_path(inputs))
-        print('video list has been written down')
+        logging.getLogger('yt').info('video list has been written down')
 
         return video_links
 

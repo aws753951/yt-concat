@@ -1,4 +1,5 @@
 from pytube import YouTube
+import logging
 
 from .step import Step
 from yt_concat.setting import VIDEOS_DIR
@@ -12,13 +13,12 @@ class DownloadVideo(Step):
         for YT in yt_set:
             url = YT.url
             if utils.download_video_exist(url):
-                print('found the same video', YT)
+                logging.getLogger('yt').debug('found the same video')
                 continue
 
-            print('downloading vidoes - ', YT)
+            logging.getLogger('yt').debug('downloading vidoes - ')
             YouTube(url).streams.get_highest_resolution().download(output_path=VIDEOS_DIR,
                                                                    filename=utils.get_id(url) + '.mp4')
-
-        print('downloaded videos')
+        logging.getLogger('yt').info('downloaded videos')
 
         return data

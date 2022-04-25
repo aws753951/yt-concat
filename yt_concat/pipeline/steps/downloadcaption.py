@@ -1,4 +1,5 @@
 from pytube import YouTube
+import logging
 
 from .step import Step
 
@@ -11,7 +12,7 @@ class DownloadCaption(Step):
             url = YT.url
 
             if utils.get_captions_exist(url):
-                print('found- ' + utils.get_id(url) + ' -captions')
+                logging.getLogger('yt').debug('found- ' + utils.get_id(url) + ' -captions')
                 continue
 
             try:
@@ -21,12 +22,12 @@ class DownloadCaption(Step):
 
                 en_caption_convert_to_srt = (en_caption.generate_srt_captions())
             except AttributeError:
-                print(url + ' has no captions')
+                logging.getLogger('yt').debug(url + ' has no captions')
                 continue
             with open(utils.get_captions_path(url), "w", encoding='utf-8') as f:
                 f.write(en_caption_convert_to_srt)
-            print('writing captions ' + url + ' here')
+            logging.getLogger('yt').debug('writing captions ' + url + ' here')
 
-        print('caption files has been written down')
+        logging.getLogger('yt').info('caption files has been written down')
 
         return data

@@ -1,6 +1,7 @@
 import sys
 import getopt
 
+
 sys.path.append('../')
 
 from yt_concat.pipeline.pipeline import Pipeline
@@ -14,6 +15,8 @@ from yt_concat.pipeline.steps.searchword import SeachWord
 from yt_concat.pipeline.steps.download_video import DownloadVideo
 from yt_concat.pipeline.steps.edit_video import EditVideo
 from yt_concat.pipeline.steps.postflight import Postflight
+from yt_concat.logger import logger_yt
+
 
 
 def main():
@@ -22,8 +25,8 @@ def main():
         'word': 'comparison',
         'limit': 5,
         'cleanup': True,
-        'fast': True,
     }
+
 
     def print_usage():
         print('python main.py OPTTIONS')
@@ -32,10 +35,9 @@ def main():
         print('{:>6} {:<20}{}'.format('-w', '--word', 'the word we want'))
         print('{:>6} {:<20}{}'.format('-l', '--limit', 'the limit number of videos combined'))
         print('{:>6} {:<20}{}'.format('-c', '--cleanup', 'whether clean captions and video ingredients'))
-        print('{:>6} {:<20}{}'.format('-f', '--fast', 'check whether videos and captions exists'))
 
-    short_opts = 'hi:w:l:c:f:'
-    long_opts = 'help id= word= limit= cleanup= fast='.split()
+    short_opts = 'hi:w:l:c:'
+    long_opts = 'help id= word= limit= cleanup= '.split()
 
     try:
         opts, args = getopt.getopt(sys.argv[1:], short_opts, long_opts)
@@ -55,8 +57,7 @@ def main():
             inputs['limit'] = arg
         elif opt in ("-c", "--cleanup"):
             inputs['cleanup'] = eval(arg)
-        elif opt in ("-f", "--fast"):
-            inputs['fast'] = eval(arg)
+
 
 
 
@@ -73,6 +74,7 @@ def main():
     ]
 
     utils = Utils()
+    logger_yt()
     p = Pipeline(steps)
     p.run(inputs, utils)
 

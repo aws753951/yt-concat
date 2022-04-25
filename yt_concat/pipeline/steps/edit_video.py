@@ -1,4 +1,5 @@
 from moviepy.editor import VideoFileClip, concatenate_videoclips
+import logging
 
 from .step import Step
 
@@ -14,7 +15,7 @@ class EditVideo(Step):
                 continue
             count += 1
             start, end = self.parse_caption_time(found.time)
-            print('clip video --- ' + found.caption + '///' + found.time)
+            logging.getLogger('yt').debug('clip video --- ' + found.caption + '///' + found.time)
             video = VideoFileClip(utils.download_video_path(url)).subclip(t_start=start, t_end=end)
             clips.append(video)
             if count > limit:
@@ -25,6 +26,8 @@ class EditVideo(Step):
 
         for video in clips:
             video.close()
+
+        logging.getLogger('yt').info('editing video has completed')
 
     def parse_caption_time(self, found_time):
         start, end = found_time.split('-->')
