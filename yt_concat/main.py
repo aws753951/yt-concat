@@ -19,26 +19,24 @@ from yt_concat.pipeline.steps.postflight import Postflight
 from yt_concat.yt_log import yt_log
 
 
-
+def print_usage():
+    print('python main.py OPTTIONS')
+    print('OPTTIONS:')
+    print('{:>6} {:<20}{}'.format('-i', '--id', 'channel id of YT'))
+    print('{:>6} {:<20}{}'.format('-w', '--word', 'the word we want'))
+    print('{:>6} {:<20}{}'.format('-l', '--limit', 'the limit number of videos combined'))
+    print('{:>6} {:<20}{}'.format('-c', '--cleanup', 'whether clean captions and video ingredients: True, False'))
+    print('{:>6} {:<20}{}'.format('-s', '--stream_logger', 'level of streaming: DEBUG, INFO, WARNING, ERROR, CRITICAL'))
 
 def main():
     inputs = {
         'channel_id': 'UCYvCbycHNeNiVOSvPhRy9lQ',
         'word': 'comparison',
         'limit': 5,
-        'cleanup': True,
+        'cleanup': False,
         'stream_logger': logging.INFO,
     }
 
-
-    def print_usage():
-        print('python main.py OPTTIONS')
-        print('OPTTIONS:')
-        print('{:>6} {:<20}{}'.format('-i', '--id', 'channel id of YT'))
-        print('{:>6} {:<20}{}'.format('-w', '--word', 'the word we want'))
-        print('{:>6} {:<20}{}'.format('-l', '--limit', 'the limit number of videos combined'))
-        print('{:>6} {:<20}{}'.format('-c', '--cleanup', 'whether clean captions and video ingredients: True, False'))
-        print('{:>6} {:<20}{}'.format('-s', '--stream_logger', 'level of streaming: DEBUG, INFO, WARNING, ERROR, CRITICAL'))
 
     short_opts = 'hi:w:l:c:s:'
     long_opts = 'help id= word= limit= cleanup= stream_logger= '.split()
@@ -58,11 +56,13 @@ def main():
         elif opt in ("-w", "--word"):
             inputs['word'] = arg
         elif opt in ("-l", "--limit"):
-            inputs['limit'] = arg
+            inputs['limit'] = int(arg)
         elif opt in ("-c", "--cleanup"):
             inputs['cleanup'] = eval(arg)
         elif opt in ("-s", "--stream_logger"):
             inputs['stream_logger'] = eval(f'logging.{arg}')
+
+
 
 
 
