@@ -32,4 +32,4 @@ https://github.com/pytube/pytube/issues/1085 <br>
 ![image](https://user-images.githubusercontent.com/101057598/168757127-0e0ff642-2a47-48a4-9291-bcbac2a5f31a.png)<br> 
 於step7 下載影片時，javascript更改其格式，須於pytube程式碼內更改<br>
 https://github.com/pytube/pytube/issues/1281<br>
-## 打包至pip install成為資源給他人使用，請參考packyt專案(由於當時我從python 3.8 至 python3.10，相關程式無法正常打包)
+## 打包至pip install成為資源給他人使用，請參考packyt專案(由於當時我從python 3.8 更新至 python3.10，相關程式無法正常打包)
